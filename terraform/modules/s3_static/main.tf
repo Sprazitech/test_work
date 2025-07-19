@@ -1,12 +1,23 @@
+resource "random_string" "bucket_suffix" {
+  length  = 6
+  upper   = false
+  special = false
+}
+
 resource "aws_s3_bucket" "website" {
-  bucket        = "${var.resources_prefix}-${var.bucket_name}"
+  bucket = "${var.project_prefix}-${random_string.bucket_suffix.result}"
   force_destroy = true
 
   tags = {
-    Name = "Static Website"
+    Name = "${var.project_prefix}-static-website"
     ENV  = var.ENV
   }
 }
+
+output "bucket_name" {
+  value = aws_s3_bucket.website.bucket
+}
+
 
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.website.id
