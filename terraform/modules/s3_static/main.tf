@@ -14,9 +14,9 @@ resource "aws_s3_bucket" "website" {
   }
 }
 
-output "bucket_name" {
-  value = aws_s3_bucket.website.bucket
-}
+# output "bucket_name" {
+#   value = aws_s3_bucket.website.bucket
+# }
 
 
 resource "aws_s3_bucket_versioning" "versioning" {
