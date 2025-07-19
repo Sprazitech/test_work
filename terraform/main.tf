@@ -6,6 +6,8 @@ module "ec2" {
 }
 
 
+# S3_static for web
+
 module "s3_static" {
   source           = "./modules/s3_static"
   resources_prefix = var.resources_prefix
