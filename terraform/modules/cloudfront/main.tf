@@ -1,5 +1,5 @@
 resource "aws_cloudfront_origin_access_control" "oac" {
-  name                              = "${var.resources_prefix}-${var.bucket_name}-oac"
+  name                              = "${var.project_prefix}-${var.bucket_name}-oac"
   description                       = "OAC for S3 static bucket"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -11,7 +11,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   default_root_object = "index.html"
 
   origin {
-    domain_name = "${var.resources_prefix}-${var.bucket_domain}"
+    domain_name = "${var.project_prefix}-${var.bucket_domain}"
     origin_id   = "staticS3Origin"
 
 
