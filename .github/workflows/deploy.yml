@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ['main']
 
+concurrency:
+  group: terraform-pipeline-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Terraform Infrastructure + Upload Website Files
