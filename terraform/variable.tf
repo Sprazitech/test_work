@@ -8,6 +8,6 @@ variable "ENV"{
 }
 
 variable "bucket_name" {
-    default =  "test832web34342"  
+    default =  "testswork202web34342"  
   
 }
