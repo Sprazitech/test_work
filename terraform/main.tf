@@ -10,7 +10,7 @@ module "ec2" {
 
 module "s3_static" {
   source           = "./modules/s3_static"
-  resources_prefix = var.resources_prefix
+  project_prefix = var.project_prefix
   bucket_name      = var.bucket_name
   ENV              = var.ENV
   
@@ -22,7 +22,7 @@ module "cloudfront" {
   bucket_name   = module.s3_static.bucket_name
   bucket_arn    = module.s3_static.bucket_arn
   bucket_domain = module.s3_static.bucket_regional_domain
-  resources_prefix = var.resources_prefix
+  project_prefix = var.project_prefix
   
 
 }

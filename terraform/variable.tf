@@ -1,4 +1,4 @@
-variable "resources_prefix" {
+variable "project_prefix" {
  default = "tobiwork"
   
 }
