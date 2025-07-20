@@ -16,40 +16,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: Checkout to Github
         uses: actions/checkout@v4
 
-      - name: 🛠 Set up Terraform
+      - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.7
 
-      - name: 🔐 Configure AWS credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: 📁 Terraform Init
+      - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
+        working-directory: ./modules
 
-      - name: ✅ Terraform Validate
+      - name: Terraform Validate
         run: terraform validate
-        working-directory: ./terraform
+        working-directory: ./modules
 
-      - name: 🔍 Terraform Plan
-        run: terraform plan -out=tfplan
-        working-directory: ./terraform
+      - name: Terraform Format
+        run: terraform fmt -recursive
 
-      - name: 🚀 Terraform Apply (auto-approve)
-        run: terraform apply -auto-approve tfplan
-        working-directory: ./terraform
+        working-directory: ./modules
 
-      - name: 📝 Install AWS CLI (if missing)
-        run: |
-          sudo apt update && sudo apt install -y awscli
+      - name: Terraform Plan
+        run: terraform plan 
+        working-directory: ./modules
+
+      - name: Terraform Apply 
+        run: terraform apply -auto-approve 
+        working-directory: ./modules
+
+    #   - name: Install AWS CLI (if missing)
+    #     run: |
+    #       sudo apt update && sudo apt install -y awscli
 
       - name: 📤 Upload website files to S3
         run: |
