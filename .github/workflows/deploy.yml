@@ -33,24 +33,24 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./modules
+        working-directory: ./test_work
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./modules
+        working-directory: ./test_work
 
       - name: Terraform Format
         run: terraform fmt -recursive
 
-        working-directory: ./modules
+        working-directory: ./test_work
 
       - name: Terraform Plan
         run: terraform plan 
-        working-directory: ./modules
+        working-directory: ./test_work
 
       - name: Terraform Apply 
         run: terraform apply -auto-approve 
-        working-directory: ./modules
+        working-directory: ./test_work
 
     #   - name: Install AWS CLI (if missing)
     #     run: |
