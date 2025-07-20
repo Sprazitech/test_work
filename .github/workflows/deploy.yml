@@ -58,6 +58,6 @@ jobs:
 
       - name: 📤 Upload website files to S3
         run: |
-          bucket_name=$(terraform -chdir=./terraform output -raw website_bucket_name)
+          bucket_name=$(terraform output -raw website_bucket_name)
           echo "Bucket name: $bucket_name"
           aws s3 sync ./website s3://$bucket_name --delete

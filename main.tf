@@ -24,7 +24,7 @@ module "cloudfront" {
   bucket_arn    = module.s3_static.bucket_arn
   bucket_domain = module.s3_static.bucket_regional_domain
   project_prefix = var.project_prefix
-  
+
   
 
 }
