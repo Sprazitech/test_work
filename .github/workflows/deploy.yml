@@ -56,8 +56,5 @@ jobs:
     #     run: |
     #       sudo apt update && sudo apt install -y awscli
 
-      - name: 📤 Upload website files to S3
-        run: |
-          bucket_name=$(terraform output -raw website_bucket_name)
-          echo "Bucket name: $bucket_name"
-          aws s3 sync ./website s3://$bucket_name --delete
+      - name: Upload website files to S3
+        run: aws s3 sync ./website s3://tobiwork-qm6yaq --delete
